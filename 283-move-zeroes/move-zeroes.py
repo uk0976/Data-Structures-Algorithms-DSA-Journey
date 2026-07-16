@@ -1,3 +1,4 @@
+#Optimal Solution 
 class Solution(object):
     def moveZeroes(self, nums):
         if len(nums)==1:
