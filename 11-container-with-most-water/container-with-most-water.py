@@ -8,12 +8,8 @@ class Solution(object):
             ans = max(ans, h * (right - left))
 
             if height[left] < height[right]:
-                curr = height[left]
-                while left < right and height[left] <= curr:
-                    left += 1
+                left += 1
             else:
-                curr = height[right]
-                while left < right and height[right] <= curr:
-                    right -= 1
+                right -= 1
 
         return ans
