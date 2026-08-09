@@ -1,17 +1,29 @@
 class Solution(object):
     def longestValidParentheses(self, s):
-        stack = [-1]
-        ans = 0
+        ans = left = right = 0
 
-        for i, ch in enumerate(s):
+        for ch in s:
             if ch == '(':
-                stack.append(i)
+                left += 1
             else:
-                stack.pop()
+                right += 1
 
-                if not stack:
-                    stack.append(i)
-                else:
-                    ans = max(ans, i - stack[-1])
+            if left == right:
+                ans = max(ans, 2 * right)
+            elif right > left:
+                left = right = 0
+
+        left = right = 0
+
+        for ch in reversed(s):
+            if ch == ')':
+                right += 1
+            else:
+                left += 1
+
+            if left == right:
+                ans = max(ans, 2 * left)
+            elif left > right:
+                left = right = 0
 
         return ans
